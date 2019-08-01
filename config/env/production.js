@@ -149,9 +149,9 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cors: {
-      // allowOrigins: [
-      //   'https://example.com',
-      // ]
+      allowOrigins: [
+        https://ejs-todo-app.herokuapp.com/
+      ]
     },
 
   },
