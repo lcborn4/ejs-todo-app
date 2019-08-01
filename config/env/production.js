@@ -150,7 +150,7 @@ module.exports = {
     ***************************************************************************/
     cors: {
       allowOrigins: [
-        'https://ejs-todo-app.herokuapp.com/'
+        'https://ejs-todo-app.herokuapp.com'
       ]
     },
 
@@ -253,7 +253,7 @@ module.exports = {
     ***************************************************************************/
     onlyAllowOrigins: [
       'https://example.com',
-'https://ejs-todo-app.herokuapp.com/'
+'https://ejs-todo-app.herokuapp.com'
     ],
 
 
