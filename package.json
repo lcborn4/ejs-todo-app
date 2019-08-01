@@ -31,6 +31,7 @@
   "author": "loganborn",
   "license": "",
   "engines": {
-    "node": "^10.15"
+    "node": "^10.15",
+      "npm": "6.9.0"
   }
 }
