@@ -47,6 +47,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     default: {
+      url: process.env.MONGODB_URI
       // adapter: 'sails-mysql',
       // url: 'mysql://user:password@host:port/database',
       //--------------------------------------------------------------------------
@@ -90,7 +91,7 @@ module.exports = {
     * https://sailsjs.com/docs/concepts/models-and-orm/model-settings#?migrate *
     *                                                                          *
     ***************************************************************************/
-    migrate: 'safe',
+    migrate: 'alter',
 
     /***************************************************************************
     *                                                                          *
