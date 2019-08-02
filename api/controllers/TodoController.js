@@ -40,10 +40,16 @@ module.exports = {
       req.body.completed = false;
     }
 
-    Todo.update(query, req.body).then(() => {
-      //this route pulls the todoList
+    if (req.body.todo == "" || req.body.todo === undefined) {
       res.redirect("/");
-    });
+    } else {
+    
+      Todo.update(query, req.body).then(() => {
+        //this route pulls the todoList
+        res.redirect("/");
+      });
+      
+    }
   },
 
   deleteTodo: async function(req, res, next) {
