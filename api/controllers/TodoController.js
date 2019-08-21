@@ -6,13 +6,13 @@
  */
 
 module.exports = {
-  homepage: async function(req, res, next) {
+  homepage: async function (req, res, next) {
     Todo.find({}).then(todos => {
       res.view("pages/homepage", { todos: todos });
     });
   },
 
-  create: async function(req, res, next) {
+  create: async function (req, res, next) {
     let newTodo = req.body;
     newTodo.completed = false;
 
@@ -28,32 +28,48 @@ module.exports = {
     }
   },
 
-  updateTodo: async function(req, res, next) {
+  updateTodo: async function (req, res, next) {
+
+    sails.log.silly('updateTodo', req.body)
+    let toggle = false; //if single or all
     let query = {};
+
     if (req.params.id) {
       query.id = req.params.id;
+      toggle = true; //if updating one
     }
 
+    //complete all or undo complete all
+    if(req.query.amount == 'all')
+    {
+      toggle = true;
+    }
+
+    sails.log('req.query', req.query)
     if (req.query.completed == "true") {
       req.body.completed = true;
     } else if (req.query.completed == "false") {
       req.body.completed = false;
     }
+    else {
+      //error - not setting
+      toggle = false;
+    }
 
-    if (req.body.todo == "" || req.body.todo === undefined) {
+    if ((!toggle) && (req.body.todo == "" || req.body.todo === undefined)) {
       res.redirect("/");
     } else {
-    
+
       Todo.update(query, req.body).then(() => {
         //this route pulls the todoList
         res.redirect("/");
       });
-      
+
     }
   },
 
-  deleteTodo: async function(req, res, next) {
-    
+  deleteTodo: async function (req, res, next) {
+
     let query = {};
     if (req.params.id) {
       sails.log("destroying", req.params.id);
